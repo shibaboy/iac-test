@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+  testBucket: 
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: test-bucket-cicd-shibaboy
+      Tags:
+        - Key: pipeline-name
+          Value: !Sub ${AWS::StackName}-pipeline
