@@ -15,3 +15,4 @@ Resources:
       Iops: 123
       AvailabilityZone: !Ref AZ
       KmsKeyId: alias/aws/ebs
+      Encrypted: true
