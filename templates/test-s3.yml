@@ -1,10 +1,39 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Resources:
-  testBucket: 
+  TestBucket: 
     Type: AWS::S3::Bucket
     Properties:
       BucketName: test-bucket-cicd-shibaboy
+      LoggingConfiguration:
+        DestinationBucketName: shibaboy-syd
+        LogFilePrefix: TestBucket-access/      
       Tags:
         - Key: pipeline-name
           Value: !Sub ${AWS::StackName}-pipeline
+
+  TestBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      Bucket: !Ref TestBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: DenyUnEncryptedObjectUploads
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:PutObject'
+            Resource: !Join 
+              - ''
+              - - !GetAtt 
+                  - TesteBucket
+                  - Arn
+                - /*
+            Condition:
+              StringNotEquals:
+                's3:x-amz-server-side-encryption': 'aws:kms'
+          - Sid: DenyInsecureConnections
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: !Join 
