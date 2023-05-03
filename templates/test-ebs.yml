@@ -1,0 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+  NewVolume:
+    Type: AWS::EC2::Volume
+    Properties: 
+      Size: 100
+      VolumeType: io1
+      Iops: 100
+      AvailabilityZone: ap-southeast-2a
+      KmsKeyId: alias/aws/ebs
