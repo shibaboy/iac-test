@@ -71,7 +71,7 @@ Resources:
       Runtime: python3.8
       Role: !GetAtt LambdaBasicExecutionRole.Arn
       Handler: lambda_function.handler
-      Code: lambda/
+      Code: ../lambda/
 
 Outputs:
   LambdaFunction:
