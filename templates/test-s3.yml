@@ -39,7 +39,7 @@ Resources:
             Resource: !Join 
               - ''
               - - !GetAtt 
-                  - CodePipelineArtifactStoreBucket
+                  - TestBucket
                   - Arn
                 - /*
             Condition:
