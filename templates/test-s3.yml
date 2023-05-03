@@ -4,7 +4,7 @@ Resources:
   TestBucket: 
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: test-bucket-cicd-shibaboy
+      BucketName: test-bucket-cicd-shibaboyy
       LoggingConfiguration:
         DestinationBucketName: shibaboy-syd
         LogFilePrefix: TestBucket-access/    
