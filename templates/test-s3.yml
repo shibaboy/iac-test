@@ -26,7 +26,7 @@ Resources:
             Resource: !Join 
               - ''
               - - !GetAtt 
-                  - TesteBucket
+                  - TestBucket
                   - Arn
                 - /*
             Condition:
@@ -37,3 +37,11 @@ Resources:
             Principal: '*'
             Action: 's3:*'
             Resource: !Join 
+              - ''
+              - - !GetAtt 
+                  - CodePipelineArtifactStoreBucket
+                  - Arn
+                - /*
+            Condition:
+              Bool:
+                'aws:SecureTransport': false
