@@ -7,7 +7,11 @@ Resources:
       BucketName: test-bucket-cicd-shibaboy
       LoggingConfiguration:
         DestinationBucketName: shibaboy-syd
-        LogFilePrefix: TestBucket-access/      
+        LogFilePrefix: TestBucket-access/    
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+        - ServerSideEncryptionByDefault:
+            SSEAlgorithm: aws:kms
       Tags:
         - Key: pipeline-name
           Value: !Sub ${AWS::StackName}-pipeline
