@@ -50,3 +50,30 @@ Resources:
         PublicSubnet1Cidr: !Ref PublicSubnet1Cidr
         PublicSubnet2Cidr: !Ref PublicSubnet2Cidr
 
+  LambdaBasicExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+  PythonFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: cfn-workshop-python-function
+      Description: Python Function to return specific TimeZone time
+      Runtime: python3.8
+      Role: !GetAtt LambdaBasicExecutionRole.Arn
+      Handler: lambda_function.handler
+      Code: lambda/
+
+Outputs:
+  LambdaFunction:
+    Description: AWS Lambda Python Function
+    Value: !Ref PythonFunction
