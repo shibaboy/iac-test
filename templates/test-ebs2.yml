@@ -11,6 +11,6 @@ Resources:
     Type: AWS::EC2::Volume
     Properties:
       Size: 123
-      VolumeType: io3
+      VolumeType: io2
       Iops: 123
       AvailabilityZone: !Ref AZ
