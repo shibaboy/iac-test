@@ -68,7 +68,7 @@ Resources:
             - !Ref AvailabilityZones
         VPCCidr: !Ref VPCCidr
         VPCName: !If
-          - IsSTG:
+          - IsSTG
           - !FindInMap [StageParameters, Name, VPCName]
           - !FindInMap [ProductionParameters, Name, VPCName]
         PublicSubnet1Cidr: !Ref PublicSubnet1Cidr
