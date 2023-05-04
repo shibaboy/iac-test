@@ -1,14 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Main stack for IaC
 
-Metadata:
-  cfn_nag:
-    rules_to_suppress:
-      - id: W89
-        reason: "testing. non vpc lambda is okay for now."
-      - id: W92
-        reason: "testing. non vpc lambda is okay for now."
-
 Parameters:
   AvailabilityZones:
     #Type: List<AWS::EC2::AvailabilityZone::Name>
@@ -79,8 +71,15 @@ Resources:
       Runtime: python3.8
       Role: !GetAtt LambdaBasicExecutionRole.Arn
       Handler: lambda_function.handler
-      Code: ./lambda/
-
+      Code: ./lambda/    
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: W89
+            reason: "testing. non vpc lambda is okay for now."
+          - id: W92
+            reason: "testing. non vpc lambda is okay for now."
+      
 Outputs:
   LambdaFunction:
     Description: AWS Lambda Python Function
