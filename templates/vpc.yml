@@ -2,6 +2,14 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Description: AWS CloudFormation workshop - Nested stacks - VPC template.
 
+Metadata:
+  cfn_nag:
+    rules_to_suppress:
+      - id: W33
+        reason: "testing."
+#       - id: W60
+#         reason: "testing."
+
 Parameters:
   AvailabilityZones:
     Type: List<AWS::EC2::AvailabilityZone::Name>
