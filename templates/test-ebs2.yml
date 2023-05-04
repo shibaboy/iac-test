@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  AZ:
+    Description: AZ name
+    Type: String
+    Default: ap-southeast-2a
+
+Resources:
+  NewVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      Size: 123
+      VolumeType: io3
+      Iops: 123
+      AvailabilityZone: !Ref AZ
