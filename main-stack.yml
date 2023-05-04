@@ -1,6 +1,14 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Main stack for IaC
 
+Metadata:
+  cfn_nag:
+    rules_to_suppress:
+      - id: W89
+        reason: "testing. non vpc lambda is okay for now."
+      - id: W92
+        reason: "testing. non vpc lambda is okay for now."
+
 Parameters:
   AvailabilityZones:
     #Type: List<AWS::EC2::AvailabilityZone::Name>
