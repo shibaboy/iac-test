@@ -34,6 +34,27 @@ Parameters:
     ConstraintDescription: CIDR block parameter must be in the form x.x.x.x/16-28
     Default: 10.0.1.0/24
 
+  Environment:
+    Type: String
+    Description: Environment info - Stage or Prod
+    AllowedValues: 
+      - Development
+      - Stage
+      - Production
+    Default: Stage
+
+Conditions:
+  IsSTG: !Equals [ !Ref Environment, 'Stage' ]
+  IsPRD: !Equals [ !Ref Environment, 'Production' ]
+
+Mappings:
+  StageParameters:
+    Name:
+      VPCName: STG-VPC
+  ProductionParameters:
+    Name:
+      VPCName: PRD-VPC
+
 Resources:
   VpcStack:
     Type: AWS::CloudFormation::Stack
@@ -46,7 +67,10 @@ Resources:
             - ','
             - !Ref AvailabilityZones
         VPCCidr: !Ref VPCCidr
-        VPCName: !Ref VPCName
+        VPCName: !If
+          - IsSTG:
+          - !FindInMap [StageParameters, Name, VPCName]
+          - !FindInMap [ProductionParameters, Name, VPCName]
         PublicSubnet1Cidr: !Ref PublicSubnet1Cidr
         PublicSubnet2Cidr: !Ref PublicSubnet2Cidr
 
