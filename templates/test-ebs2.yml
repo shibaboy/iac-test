@@ -14,5 +14,5 @@ Resources:
       VolumeType: io2
       Iops: 123
       AvailabilityZone: !Ref AZ
-      KmsKeyId: alias/aws/ebs
-      Encrypted: true      
+      #KmsKeyId: alias/aws/ebs
+      Encrypted: false      
